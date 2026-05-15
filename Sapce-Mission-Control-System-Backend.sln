@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36811.4 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web-Api-Space", "Web-Api-Space\Web-Api-Space.csproj", "{6FF4EDA5-8E0C-4A16-BBC3-945E92324297}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMCSB.Data", "SMCSB.Data\SMCSB.Data.csproj", "{7875486C-B3A7-4F9A-AE5F-39680232B716}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6FF4EDA5-8E0C-4A16-BBC3-945E92324297}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FF4EDA5-8E0C-4A16-BBC3-945E92324297}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FF4EDA5-8E0C-4A16-BBC3-945E92324297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7875486C-B3A7-4F9A-AE5F-39680232B716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7875486C-B3A7-4F9A-AE5F-39680232B716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7875486C-B3A7-4F9A-AE5F-39680232B716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7875486C-B3A7-4F9A-AE5F-39680232B716}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
