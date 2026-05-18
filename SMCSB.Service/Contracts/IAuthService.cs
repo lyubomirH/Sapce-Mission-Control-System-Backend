@@ -1,15 +1,10 @@
 ﻿using SMCSB.Service.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SMCSB.Service.Contracts
+namespace SMCSB.Service.Services
 {
     public interface IAuthService
     {
-        Task<LoginResponseDto?> LoginAsync(LoginDto loginDto);
+        Task<LoginResponseDto> LoginAsync(LoginDto loginDto);
+        Task<RegisterResponseDto> RegisterAsync(RegisterDto registerDto);
     }
-
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SMCSB.Data.Configurations;
-using SMCSB.Service.Contracts;
+using SMCSB.Data.Configurations.Entities;
+using SMCSB.Data ;
 using SMCSB.Service.DTOs;
 
 namespace SMCSB.Service.Services
@@ -59,6 +60,69 @@ namespace SMCSB.Service.Services
                 {
                     IsSuccess = false,
                     Message = $"An error occurred: {ex.Message}"
+                };
+            }
+        }
+
+        public async Task<RegisterResponseDto> RegisterAsync(RegisterDto registerDto)
+        {
+            try
+            {
+                // Check if email already exists
+                var existingEmail = await _context.Users
+                    .AnyAsync(u => u.Email == registerDto.Email);
+
+                if (existingEmail)
+                {
+                    return new RegisterResponseDto
+                    {
+                        IsSuccess = false,
+                        Message = "Email is already registered"
+                    };
+                }
+
+                // Check if username already exists
+                var existingUsername = await _context.Users
+                    .AnyAsync(u => u.Username == registerDto.Username);
+
+                if (existingUsername)
+                {
+                    return new RegisterResponseDto
+                    {
+                        IsSuccess = false,
+                        Message = "Username is already taken"
+                    };
+                }
+
+                // Create new user
+                var user = new User
+                {
+                    Email = registerDto.Email,
+                    Username = registerDto.Username,
+                    Password = registerDto.Password, // In production, hash this password!
+                    Role = string.IsNullOrEmpty(registerDto.Role) ? "User" : registerDto.Role,
+                    Age = registerDto.Age
+                };
+
+                // Add user to database
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
+
+                return new RegisterResponseDto
+                {
+                    IsSuccess = true,
+                    Message = "User registered successfully",
+                    UserId = user.Id,
+                    Email = user.Email,
+                    Username = user.Username
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RegisterResponseDto
+                {
+                    IsSuccess = false,
+                    Message = $"An error occurred during registration: {ex.Message}"
                 };
             }
         }

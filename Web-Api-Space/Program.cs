@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using SMCSB.Data.Configurations;
-using SMCSB.Data.Configurations;
-using SMCSB.Service.Contracts;
 using SMCSB.Service.Services;
 
 namespace Web_Api_Space
