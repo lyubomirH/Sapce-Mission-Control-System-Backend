@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using SMCSB.Data.Configurations;
+using SMCSB.Data.Configurations;
+using SMCSB.Service.Contracts;
+using SMCSB.Service.Services;
 
 namespace Web_Api_Space
 {
@@ -8,11 +13,18 @@ namespace Web_Api_Space
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // Register DbContext
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Register services
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
             var app = builder.Build();
 
@@ -24,10 +36,7 @@ namespace Web_Api_Space
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();

@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.27" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SMCSB.Data\SMCSB.Data.csproj" />
+  </ItemGroup>
+
 </Project>
